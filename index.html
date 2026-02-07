@@ -1,102 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pune Valley International School</title>
-<link rel="stylesheet" href="style.css">
-<script defer src="index.js"></script>
+    <meta charset="UTF-8">
+    <title>Tirupati Temple Darshan Booking</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<header id="navbar">
-    <div class="logo">🏫 Pune Valley School</div>
+<header>
+    <h1>🛕 Tirupati Balaji Temple</h1>
     <nav>
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#academics">Academics</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#admission">Admission</a>
-        <a href="#contact">Contact</a>
+        <button onclick="showSection('home')">Home</button>
+        <button onclick="showSection('about')">About God</button>
+        <button onclick="showSection('tickets')">Darshan Tickets</button>
+        <button onclick="showSection('booking')">Book Darshan</button>
     </nav>
 </header>
 
-<!-- HERO -->
-<section id="home" class="hero">
-    <div class="slider">
-        <img class="slide active" src="https://images.unsplash.com/photo-1588072432836-e10032774350" />
-        <img class="slide" src="https://images.unsplash.com/photo-1577896851231-70ef18881754" />
-        <img class="slide" src="https://images.unsplash.com/photo-1509062522246-3755977927d7" />
-    </div>
-    <div class="hero-text">
-        <h1>Welcome to Pune Valley International School</h1>
-        <p>Building Bright Futures Since 2002</p>
-        <button onclick="scrollToSection('admission')">Apply Now</button>
-    </div>
+<!-- HOME -->
+<section id="home" class="section active">
+    <h2>Welcome to Tirupati Temple Online Portal</h2>
+    <p>Book your darshan and get divine blessings of Lord Venkateswara 🙏</p>
 </section>
 
 <!-- ABOUT -->
 <section id="about" class="section">
-    <h2>About Us</h2>
+    <h2>About Lord Venkateswara</h2>
     <p>
-        Located in Pune, we provide world-class education focusing on innovation,
-        creativity, and holistic development. Our campus blends modern technology
-        with traditional values.
+        Lord Venkateswara, also known as Balaji, Srinivasa, or Govinda,
+        is an incarnation of Lord Vishnu. The Tirupati temple located in
+        Tirumala Hills is one of the richest and most visited temples in the world.
+    </p>
+    <p>
+        Devotees believe praying here removes sins and grants prosperity and peace.
     </p>
 </section>
 
-<!-- ACADEMICS -->
-<section id="academics" class="cards">
-    <h2>Our Programs</h2>
-    <div class="card-container">
-        <div class="card">
-            <h3>Primary School</h3>
-            <p>Activity based learning for young minds.</p>
-        </div>
-        <div class="card">
-            <h3>Secondary School</h3>
-            <p>Strong academic foundation & leadership.</p>
-        </div>
-        <div class="card">
-            <h3>Sports & Arts</h3>
-            <p>Cricket, Robotics, Music & Dance studios.</p>
-        </div>
-    </div>
+<!-- TICKETS -->
+<section id="tickets" class="section">
+    <h2>Available Darshan Tickets</h2>
+    <div id="ticketList"></div>
 </section>
 
-<!-- GALLERY -->
-<section id="gallery" class="gallery">
-    <h2>Campus Life</h2>
-    <div class="gallery-grid">
-        <img src="https://images.unsplash.com/photo-1584697964154-54b3c0f1f4d3">
-        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644">
-        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b">
-        <img src="https://images.unsplash.com/photo-1571260899304-425eee4c7efc">
-    </div>
-</section>
+<!-- BOOKING -->
+<section id="booking" class="section">
+    <h2>Book Your Darshan</h2>
 
-<!-- ADMISSION -->
-<section id="admission" class="section">
-    <h2>Admission Enquiry</h2>
-    <form id="admissionForm">
-        <input type="text" id="name" placeholder="Student Name" required>
-        <input type="text" id="grade" placeholder="Grade Applying For" required>
-        <input type="email" id="email" placeholder="Parent Email" required>
-        <input type="tel" id="phone" placeholder="Phone Number" required>
-        <button type="submit">Submit</button>
+    <form id="bookingForm">
+        <input type="text" id="name" placeholder="Full Name" required>
+        <input type="number" id="persons" placeholder="Number of Persons" required min="1">
+        
+        <select id="ticketType">
+            <option value="Free Darshan">Free Darshan</option>
+            <option value="₹300 Special Entry">₹300 Special Entry</option>
+            <option value="₹500 VIP Darshan">₹500 VIP Darshan</option>
+        </select>
+
+        <input type="date" id="date" required>
+
+        <button type="submit">Confirm Booking</button>
     </form>
-    <p id="formMsg"></p>
+
+    <h3 id="confirmation"></h3>
 </section>
 
-<!-- CONTACT -->
-<footer id="contact">
-    <h3>Pune Valley International School</h3>
-    <p>Baner, Pune, Maharashtra</p>
-    <p>Email: info@punevalleyschool.com</p>
-    <p>Phone: +91 98765 43210</p>
-</footer>
-
+<script src="index.js"></script>
 </body>
 </html>
-

@@ -1,59 +1,57 @@
-// IMAGE SLIDER
-let slides = document.querySelectorAll(".slide");
-let current = 0;
-
-function nextSlide(){
-    slides[current].classList.remove("active");
-    current = (current + 1) % slides.length;
-    slides[current].classList.add("active");
+// SPA Navigation
+function showSection(sectionId) {
+    document.querySelectorAll(".section").forEach(sec => sec.classList.remove("active"));
+    document.getElementById(sectionId).classList.add("active");
 }
 
-setInterval(nextSlide, 4000);
+// Ticket Database (Dynamic)
+let tickets = {
+    "Free Darshan": 50,
+    "₹300 Special Entry": 40,
+    "₹500 VIP Darshan": 20
+};
 
+// Display Tickets
+function loadTickets() {
+    let ticketList = document.getElementById("ticketList");
+    ticketList.innerHTML = "";
 
-// SMOOTH SCROLL
-function scrollToSection(id){
-    document.getElementById(id).scrollIntoView({behavior:"smooth"});
+    for (let type in tickets) {
+        let card = document.createElement("div");
+        card.className = "ticketCard";
+        card.innerHTML = `
+            <h3>${type}</h3>
+            <p>Available Slots: <b>${tickets[type]}</b></p>
+        `;
+        ticketList.appendChild(card);
+    }
 }
 
+loadTickets();
 
-// NAVBAR SCROLL EFFECT
-window.addEventListener("scroll",()=>{
-    let nav = document.getElementById("navbar");
-    nav.classList.toggle("scrolled",window.scrollY>50);
-});
-
-
-// FORM VALIDATION
-document.getElementById("admissionForm").addEventListener("submit",function(e){
+// Booking Logic
+document.getElementById("bookingForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
-    let name=document.getElementById("name").value;
-    let email=document.getElementById("email").value;
-    let phone=document.getElementById("phone").value;
+    let name = document.getElementById("name").value;
+    let persons = parseInt(document.getElementById("persons").value);
+    let type = document.getElementById("ticketType").value;
+    let date = document.getElementById("date").value;
 
-    if(name.length<3){
-        showMsg("Enter valid name",true);
-        return;
+    if (tickets[type] >= persons) {
+        tickets[type] -= persons;
+
+        document.getElementById("confirmation").innerText =
+            `Booking Confirmed 🙏\n
+             Name: ${name}
+             Ticket: ${type}
+             Persons: ${persons}
+             Date: ${date}`;
+
+        loadTickets();
+        document.getElementById("bookingForm").reset();
+    } else {
+        document.getElementById("confirmation").innerText =
+            "❌ Not enough tickets available!";
     }
-
-    if(!email.includes("@")){
-        showMsg("Enter valid email",true);
-        return;
-    }
-
-    if(phone.length<10){
-        showMsg("Enter valid phone number",true);
-        return;
-    }
-
-    showMsg("Form submitted successfully! We will contact you soon.",false);
-    this.reset();
 });
-
-function showMsg(msg,error){
-    let el=document.getElementById("formMsg");
-    el.textContent=msg;
-    el.style.color= error ? "red" : "green";
-}
-
