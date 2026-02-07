@@ -1,0 +1,7 @@
+git -v
+git init 
+touch index.html index.js style.css
+edit each file and save 
+
+:wq
+
