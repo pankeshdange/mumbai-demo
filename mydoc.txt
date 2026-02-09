@@ -4,4 +4,4 @@ touch index.html index.js style.css
 edit each file and save 
 
 :wq
-
+checlo 
