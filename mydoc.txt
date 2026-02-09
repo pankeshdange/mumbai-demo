@@ -5,3 +5,11 @@ edit each file and save
 
 :wq
 checlo 
+
+ git push -u origin master
+   50  ssh ec2-user@your-ec2-3.235.139.140
+   51  git config --global credential.helper store
+   52  rm -f ~/.git-credentials
+   53  git push -u origin master
+   54  cat ~/.git-credentials
+ 
